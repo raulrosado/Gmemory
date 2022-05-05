@@ -8,10 +8,13 @@ import com.serproteam.gmemory.R
 import com.serproteam.gmemory.core.ReplaceFragment
 import com.serproteam.gmemory.databinding.ActivityMainBinding
 import com.serproteam.gmemory.ui.fragment.Bienvenida
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    val replaceFragment = ReplaceFragment()
+    @Inject lateinit var replaceFragment : ReplaceFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +25,6 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
         setContentView(binding.root)
-
         configInicio()
     }
 

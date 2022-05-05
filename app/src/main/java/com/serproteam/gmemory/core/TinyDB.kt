@@ -5,11 +5,11 @@ import android.content.SharedPreferences
 import android.os.Environment
 import android.text.TextUtils
 import com.google.gson.Gson
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
 
-
-class TinyDB(appContext: Context) {
-    var context = appContext
+class TinyDB(@ApplicationContext context: Context) {
+//    var context = appContext
     private var preferences: SharedPreferences? = context.getSharedPreferences("gmemory",Context.MODE_PRIVATE)
 
     fun getInt(key: String?): Int {

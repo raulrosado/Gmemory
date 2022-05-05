@@ -7,4 +7,151 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="endColorGradient">#ff2a6d</color>
+    <color name="startColorGradient">#f15b5d</color>
+    <color name="fondoBackground">#fafafa</color>
+    <color name="endColorGradientBtn">#ff2a6d</color>
+    <color name="startColorGradientBtn">#f15b5d</color>
+    <color name="colorPanel">#D1D1D1</color>
+    <color name="colorPanel2">#fafafa</color>
+    <color name="colorPanel3">#fafafa</color>
+    <color name="rosadito">#ff2a6d</color>
+    <color name="colorIconos">#0C0C0C</color>
+    <color name="subtit">#0C0C0C</color>
+
+    <color name="grisclaro">#D1D1D1</color>
+    <color name="gris_b">#EBEBEB</color>
+    <color name="colorGrisPanel">#D1D1D1</color>
+
+    <color name="amarillo_c">#E8B90C</color>
+    <color name="amarillo_b">#BC9612</color>
+    <color name="amarillo_i">#3EBC9612</color>
+    <color name="amarillo_a">#EABF22</color>
+    <color name="amarillo_d">#FEC107</color>
+    <color name="amarillo_e">#FED54F</color>
+    <color name="amarillo_f">#ffead1</color>
+    <color name="amarillo_g">#FFB74C</color>
+    <color name="rojo_aa">#2CD90303</color>
+    <color name="azul_cb">#1B6184CB</color>
+
+    <color name="gris">#fafafa</color>
+    <color name="grisoscuro">#666565</color>
+    <color name="rojo">#ff2a6d</color>
+    <color name="transparente">#00FF0000</color>
+
+    <color name="active_dost">#ff2a6d</color>
+    <color name="inactive_dost">#666565</color>
+
+    <color name="transparente2">@android:color/transparent</color>
+    <color name="blanco">#ffffff</color>
+    <color name="blancotransparente">#5EFFFFFF</color>
+
+    <color name="negro_">#000000</color>
+    <color name="negro_a">#222222</color>
+    <color name="negro_f">#252525</color>
+
+    <color name="gris_d">#424242</color>
+    <color name="gris_e">#484848</color>
+    <color name="gris_f">#4a4a4a</color>
+    <color name="gris_g">#717171</color>
+    <color name="gris_l">#757575</color>
+    <color name="gris_h">#767676</color>
+    <color name="gris_m">#949594</color>
+    <color name="gris_n">#ADADAD</color>
+    <color name="gris_i">#bbbbbb</color>
+    <color name="gris_s">#bcbcbc</color>
+    <color name="gris_v">#cccccc</color>
+    <color name="gris_t">#c7c7c7</color>
+    <color name="gris_a">#D6D6D6</color>
+    <color name="gris_j">#d8d8d8</color>
+    <color name="gris_k">#eeeeee</color>
+    <color name="gris_o">#ebebed</color>
+    <color name="gris_w">#E9EAEE</color>
+    <color name="gris_p">#e6e6e8</color>
+    <color name="gris_q">#e3e3e6</color>
+    <color name="gris_r">#dfdfe3</color>
+    <!--    <color name="gris_c">#F2F2F2</color>-->
+    <color name="gris_c">#9B9D9C</color>
+    <color name="gris_u">#f6f7fb</color>
+
+    <color name="azul_a">#2196f3</color>
+    <color name="azul_b">#0061d6</color>
+    <color name="azul_c">#1A73E9</color>
+    <color name="azul_e">#1646FF</color>
+    <color name="azul_f">#3E80FF</color>
+    <color name="azul_g">#D7E0FF</color>
+    <color name="azul_h">#BFC3D9</color>
+
+    <color name="verde_j">#1abc9c</color>
+    <color name="verde_i">#5efc82</color>
+    <color name="verde_h">#00c853</color>
+    <color name="verde_g">#009624</color>
+    <color name="verde_f">#00757A</color>
+    <color name="verde_a">#2B7274</color>
+    <color name="verde_b">#008489</color>
+    <color name="verde_c">#3d969a</color>
+    <color name="verde_d">#b4e0df</color>
+    <color name="verde_e">#b9f3f5</color>
+
+    <color name="amarillo_n">#ffb400</color>
+    <color name="dif_a">#3c415e</color>
+
+    <color name="rojo_a">#891651</color>
+    <color name="rojo_m">#5E212121</color>
+    <color name="rojo_g">#5E2121</color>
+    <color name="rojo_h">#b30328</color>
+    <color name="rojo_l">#ff0000</color>
+    <color name="rojo_i">#D81B60</color>
+    <color name="rojo_b">#c13a48</color>
+    <color name="rojo_c">#d43142</color>
+    <color name="rojo_d">#ff385c</color>
+    <color name="rojo_j">#ec4b51</color>
+    <color name="rojo_e">#db6b77</color>
+    <color name="rojo_k">#ff7f7d</color>
+    <color name="rojo_f">#f8a1a9</color>
+    <color name="rojo_n">#ffebee</color>
+
+    <color name="azul_cc">#4A6184CB</color>
+    <color name="morado_b">#5c007a</color>
+    <!--    <color name="morado_c">#7b1fa2</color>-->
+    <color name="morado_d">#8e24aa</color>
+    <color name="morado_e">#ae52d4</color>
+    <color name="morado_f">#c158dc</color>
+    <color name="naranja_b">#FE6F00</color>
+
+    <color name="morado_a">#7F1665</color>
+    <color name="morado_i">#4B7F1665</color>
+    <!--    <color name="morado_b">#D90368</color>-->
+    <color name="morado_c">#F7496E</color>
+    <!--    <color name="morado_f">#EF4956</color>-->
+
+    <color name="oscuro_a">#14172A</color>
+
+
+    <color name="texto_claro_a">@color/rojo_n</color>
+
+    <color name="divider_color">@color/gris_b</color>
+    <color name="boton_oscuro_claro_editar">#5614172A</color>
+
+    <color name="color_small_title_config">@color/gris_m</color>
+
+    <color name="tv_selector_color">@color/verde_f</color>
+    <color name="topbar_text_color">@color/verde_f</color>
+    <color name="Fragment_Perfil_User_Name_textColor">@color/negro_</color>
+    <color name="Fragment_Perfil_User_short_textColor">@color/negro_</color>
+    <color name="top_bar_fragment_viajero_viajes_title_textColor">@color/negro_</color>
+    <color name="color_del_boton_de_reserva_show_contacto_info">@color/verde_f</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="chartPinDrawable">@color/azul_e</color>
+
+    <color name="chart_gradient_start">#001646FF</color>
+    <color name="chart_gradient_end">#561646FF</color>
+
+    <color name="boton_selector_chart_typedate_true">#561646FF</color>
+    <color name="boton_selector_chart_typedate_false">#1B6184CB</color>
+
+    <color name="block_radio_button_color_thema">@color/azul_e</color>
+
 </resources>

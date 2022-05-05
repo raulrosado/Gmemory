@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/backgroundblanco.xml" value="0.1255" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/backgroundimagen.xml" value="0.3635" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/button_accent.xml" value="0.1255" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/button_accent_blue.xml" value="0.2615" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/card_gris.xml" value="0.3635" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/card_grispanel.xml" value="0.3635" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/checked_btn.xml" value="0.3635" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/checked_btn_blue.xml" value="0.2615" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/dost.xml" value="0.2735" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/gradienttransparente.xml" value="0.1255" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/inactive_dost.xml" value="0.2735" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/style_chech.xml" value="0.1255" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/activity_main.xml" value="0.26875" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/banner.xml" value="0.3625" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_bienvenida.xml" value="0.33" />
