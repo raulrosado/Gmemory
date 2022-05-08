@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.serproteam.gmemory.databinding.FragmentPersonajesBinding
+import com.serproteam.gmemory.ui.viewmodel.SliderViewModel
 import com.serproteam.pideloapp.core.TinyDB
 import java.io.IOException
 
@@ -29,6 +31,7 @@ class Personajes : Fragment() {
     private var _binding: FragmentPersonajesBinding? = null
     private val binding get() = _binding!!
     lateinit var tinyDB: TinyDB
+    private val slideViewModel: SliderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

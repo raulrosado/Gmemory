@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import com.serproteam.gmemory.R
 import com.serproteam.gmemory.databinding.FragmentLevelsBinding
+import com.serproteam.gmemory.ui.viewmodel.SliderViewModel
 import com.serproteam.pideloapp.core.TinyDB
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,6 +33,7 @@ class Levels : Fragment() {
     private var _binding: FragmentLevelsBinding? = null
     private val binding get() = _binding!!
     lateinit var tinyDB: TinyDB
+    private val slideViewModel: SliderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,22 +53,18 @@ class Levels : Fragment() {
 
         binding.btnfacil.setOnClickListener {
             activClient(binding.btnfacil,binding.txtFacil,binding.txt4x4)
-            saveLevel(0)
+            slideViewModel.saveLevel(requireContext(),0)
         }
         binding.btnmedio.setOnClickListener {
             activClient(binding.btnmedio,binding.txtMedio,binding.txt6x4)
-            saveLevel(1)
+            slideViewModel.saveLevel(requireContext(),1)
         }
         binding.btnalto.setOnClickListener {
             activClient(binding.btnalto,binding.txtAlto,binding.txt6x5)
-            saveLevel(2)
+            slideViewModel.saveLevel(requireContext(),2)
         }
 
         return binding.root
-    }
-
-    fun saveLevel(level:Int){
-        tinyDB.putInt("level",level)
     }
 
     fun activClient(btn: LinearLayout, txtNivel: TextView, txtCant: TextView) {
