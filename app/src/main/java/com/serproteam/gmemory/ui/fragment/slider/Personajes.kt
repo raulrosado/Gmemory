@@ -48,7 +48,7 @@ class Personajes : Fragment() {
         _binding = FragmentPersonajesBinding.inflate(inflater, container, false)
         tinyDB = TinyDB(requireContext());
 
-        when (tinyDB.getString("personaje","batman")) {
+        when (slideViewModel.personajeSel(requireContext())) {
             "batman" -> {
                 sel(binding.selecBat, binding.selecSuper)
             }
@@ -69,13 +69,13 @@ class Personajes : Fragment() {
         return binding.root
     }
 
-    fun sel(selec: LinearLayout, desSelect: LinearLayout) {
+    private fun sel(selec: LinearLayout, desSelect: LinearLayout) {
         selec.visibility = View.VISIBLE
         desSelect.visibility = View.GONE
     }
 
-    fun selPersonaje(personaje: String) {
-        tinyDB.putString("personaje", personaje)
+    private fun selPersonaje(personaje: String) {
+        slideViewModel.savePersonaje(requireContext(),personaje)
     }
 
     companion object {
