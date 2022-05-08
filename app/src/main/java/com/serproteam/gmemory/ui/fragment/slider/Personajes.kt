@@ -1,11 +1,15 @@
 package com.serproteam.gmemory.ui.fragment.slider
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.serproteam.gmemory.R
+import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
+import com.serproteam.gmemory.databinding.FragmentPersonajesBinding
+import com.serproteam.pideloapp.core.TinyDB
+import java.io.IOException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +26,10 @@ class Personajes : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var _binding: FragmentPersonajesBinding? = null
+    private val binding get() = _binding!!
+    lateinit var tinyDB: TinyDB
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,8 +42,37 @@ class Personajes : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_personajes, container, false)
+        _binding = FragmentPersonajesBinding.inflate(inflater, container, false)
+        tinyDB = TinyDB(requireContext());
+
+        when (tinyDB.getString("personaje","batman")) {
+            "batman" -> {
+                sel(binding.selecBat, binding.selecSuper)
+            }
+            "superman" -> {
+                sel(binding.selecSuper, binding.selecBat)
+            }
+        }
+
+        binding.btnBatman.setOnClickListener {
+            sel(binding.selecBat, binding.selecSuper)
+            selPersonaje("batman")
+        }
+
+        binding.btnSuperMan.setOnClickListener {
+            sel(binding.selecSuper, binding.selecBat)
+            selPersonaje("superman")
+        }
+        return binding.root
+    }
+
+    fun sel(selec: LinearLayout, desSelect: LinearLayout) {
+        selec.visibility = View.VISIBLE
+        desSelect.visibility = View.GONE
+    }
+
+    fun selPersonaje(personaje: String) {
+        tinyDB.putString("personaje", personaje)
     }
 
     companion object {

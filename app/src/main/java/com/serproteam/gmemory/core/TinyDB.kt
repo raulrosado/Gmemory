@@ -4,18 +4,29 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Environment
 import android.text.TextUtils
+import androidx.fragment.app.Fragment
 import com.google.gson.Gson
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class TinyDB(@ApplicationContext context: Context) {
-//    var context = appContext
-    private var preferences: SharedPreferences? = context.getSharedPreferences("gmemory",Context.MODE_PRIVATE)
+class TinyDB(appContext: Context) {
+    var context = appContext
+
+    private var preferences: SharedPreferences? =
+        context.getSharedPreferences("gmemory", Context.MODE_PRIVATE)
 
     fun getInt(key: String?): Int {
         return preferences!!.getInt(key, 0)
     }
-    fun getInt(key: String?,inicial:Int): Int {
+
+    fun getInt(key: String?, inicial: Int): Int {
         return preferences!!.getInt(key, inicial)
     }
 
@@ -30,7 +41,8 @@ class TinyDB(@ApplicationContext context: Context) {
     fun getString(key: String?): String? {
         return preferences!!.getString(key, "")
     }
-    fun getString(key: String?,inicial:String): String? {
+
+    fun getString(key: String?, inicial: String): String? {
         return preferences!!.getString(key, inicial)
     }
 

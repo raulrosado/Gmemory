@@ -40,7 +40,6 @@ class OpcionesJuego : Fragment() {
 
     private var _binding: FragmentOpcionesJuegoBinding? = null
     private val binding get() = _binding!!
-//    @Inject lateinit var tinyDB: TinyDB
     @Inject lateinit var replaceFragment : ReplaceFragment
 
     var sliderPager: ViewPager? = null

@@ -21,107 +21,98 @@
         android:gravity="center_vertical|center_horizontal"
         android:orientation="horizontal">
 
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical|center_horizontal"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:id="@+id/btnfacil"
                 android:layout_width="150dp"
                 android:layout_height="200dp"
                 android:layout_margin="15dp"
-                android:background="@drawable/checked_btn">
+                android:background="@drawable/backgroundblanco"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtFacil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Facil"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Facil"
-                        android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/txt4x4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="4X4"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="4X4"
-                        android:textSize="20sp" />
-                </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:id="@+id/btnmedio"
                 android:layout_width="150dp"
                 android:layout_height="200dp"
                 android:layout_margin="15dp"
-                android:background="@drawable/checked_btn"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="3dp">
+                android:background="@drawable/backgroundblanco"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtMedio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Medio"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Medio"
-                        android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/txt6x4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="6X4"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="6X4"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:id="@+id/btnalto"
                 android:layout_width="150dp"
                 android:layout_height="200dp"
                 android:layout_margin="15dp"
-                android:background="@drawable/checked_btn"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="3dp">
+                android:background="@drawable/backgroundblanco"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtAlto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Alto"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="Alto"
-                        android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/txt6x5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="6X5"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="6X5"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-        </RadioGroup>
+        </LinearLayout>
     </LinearLayout>
 
 

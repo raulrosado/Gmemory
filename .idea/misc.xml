@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/backgroundblanco.xml" value="0.1255" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/backgroundcasitrans.xml" value="0.3635" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/backgroundimagen.xml" value="0.3635" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/borde_azul_radius10_fa.xml" value="0.3635" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/button_accent.xml" value="0.1255" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/button_accent_blue.xml" value="0.2615" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/card_gris.xml" value="0.3635" />
@@ -21,6 +23,7 @@
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_levels.xml" value="0.3625" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_opciones_juego.xml" value="0.3625" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_personajes.xml" value="0.5" />
       </map>
     </option>
   </component>
