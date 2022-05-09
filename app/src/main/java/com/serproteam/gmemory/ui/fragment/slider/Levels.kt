@@ -53,15 +53,15 @@ class Levels : Fragment() {
 
         binding.btnfacil.setOnClickListener {
             activClient(binding.btnfacil,binding.txtFacil,binding.txt4x4)
-            slideViewModel.saveLevel(requireContext(),0)
+            slideViewModel.saveLevel(requireContext(),1)
         }
         binding.btnmedio.setOnClickListener {
             activClient(binding.btnmedio,binding.txtMedio,binding.txt6x4)
-            slideViewModel.saveLevel(requireContext(),1)
+            slideViewModel.saveLevel(requireContext(),2)
         }
         binding.btnalto.setOnClickListener {
             activClient(binding.btnalto,binding.txtAlto,binding.txt6x5)
-            slideViewModel.saveLevel(requireContext(),2)
+            slideViewModel.saveLevel(requireContext(),3)
         }
 
         return binding.root

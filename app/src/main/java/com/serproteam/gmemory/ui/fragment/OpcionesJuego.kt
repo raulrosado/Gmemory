@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.viewpager.widget.PagerAdapter
@@ -48,6 +49,7 @@ class OpcionesJuego : Fragment() {
     var current_position = 0
     var fragmentList: ArrayList<Fragment>? = null
     private val slideViewModel: SliderViewModel by viewModels()
+    lateinit var tinyDB:TinyDB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +66,7 @@ class OpcionesJuego : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentOpcionesJuegoBinding.inflate(inflater, container, false)
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        tinyDB = TinyDB(requireContext())
 
         fragmentList = ArrayList<Fragment>()
         fragmentList = slideViewModel.getSliderData()
@@ -85,6 +88,15 @@ class OpcionesJuego : Fragment() {
 
             override fun onPageScrollStateChanged(i: Int) {}
         })
+
+        binding.btnJugar.setOnClickListener {
+            if(slideViewModel.getLevel(requireContext()) == 0){
+                Toast.makeText(requireContext(),"Escoja un nivel",Toast.LENGTH_SHORT).show()
+            }else{
+                replaceFragment(R.id.contenedorFragment, JuegoFragment(), fragmentTransaction)
+            }
+        }
+
 
 
         return binding.root

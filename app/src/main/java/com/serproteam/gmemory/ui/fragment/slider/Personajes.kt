@@ -9,8 +9,9 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.serproteam.gmemory.databinding.FragmentPersonajesBinding
-import com.serproteam.gmemory.ui.viewmodel.SliderViewModel
+import com.serproteam.gmemory.ui.viewmodel.PersonajesViewModel
 import com.serproteam.pideloapp.core.TinyDB
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,6 +24,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Personajes.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class Personajes : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -30,8 +32,8 @@ class Personajes : Fragment() {
 
     private var _binding: FragmentPersonajesBinding? = null
     private val binding get() = _binding!!
-    lateinit var tinyDB: TinyDB
-    private val slideViewModel: SliderViewModel by viewModels()
+    private lateinit var tinyDB: TinyDB
+    private val personajesViewModel: PersonajesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +50,7 @@ class Personajes : Fragment() {
         _binding = FragmentPersonajesBinding.inflate(inflater, container, false)
         tinyDB = TinyDB(requireContext());
 
-        when (slideViewModel.personajeSel(requireContext())) {
+        when (personajesViewModel.personajeSel(requireContext())) {
             "batman" -> {
                 sel(binding.selecBat, binding.selecSuper)
             }
@@ -75,7 +77,7 @@ class Personajes : Fragment() {
     }
 
     private fun selPersonaje(personaje: String) {
-        slideViewModel.savePersonaje(requireContext(),personaje)
+        personajesViewModel.savePersonaje(requireContext(),personaje)
     }
 
     companion object {
