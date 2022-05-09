@@ -24,6 +24,7 @@ import com.serproteam.gmemory.domain.Entitys.Cartas
 import com.serproteam.gmemory.ui.viewmodel.PersonajesViewModel
 import com.serproteam.gmemory.ui.viewmodel.SliderViewModel
 import com.serproteam.pideloapp.core.TinyDB
+import com.tapadoo.alerter.Alerter
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
@@ -65,7 +66,8 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
     var cartasAdaptadores: CartasAdaptadores? = null
     var runnable: Runnable? = null
     var handler = Handler()
-    val TIEMPO = 1000
+    val TIEMPO = 500
+    var cantCartasLevel = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,18 +88,26 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
 
         cantParejas.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             binding.txtCantParejas.text = cantParejas.value.toString()
-            if (cantParejas.value == 8) {
-                var completo = false
-                for (o in arrayCartas) {
-                    if (!o.activo) {
-                        completo = true
-                    }
-                }
-                if(completo) {
-                    binding.cMeter.stop()
-                    isWorking = false
+            var completo = false
+            var contador = 0
+            for (o in arrayCartas) {
+                Log.v("raulDev", "carta:" + o.carta + " estado: " + o.activo);
+                if (o.activo == true) {
+                    contador++
                 }
             }
+            if (contador == cantCartasLevel) {
+                Log.v("raulDev", "Se completo el juego")
+                Alerter.create(requireActivity())
+                    .setIcon(resources.getDrawable(R.drawable.ic_baseline_casino_24))
+                    .setBackgroundDrawable(resources.getDrawable(R.color.verde_h))
+                    .setTitle(resources.getString(R.string.felicidades))
+                    .setText(resources.getString(R.string.felicidadesDesc) + " Tiempo de " + binding.cMeter.getText().toString())
+                    .show()
+                binding.cMeter.stop()
+                isWorking = false
+            }
+
         })
 
         level = slideViewModel.getLevel(requireContext())
@@ -139,20 +149,18 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
 
     fun createArray(cant: Int, cantCartas: Int) {
         Log.v("raul", "cant:" + cant)
+        binding.txtCantParejasTotal.text = cantCartas.toString() + "-"
+        cantCartasLevel = cant
         val random = Random()
 
         while (arrayCartas.size < cant) {
             val getRandomValue: Int = random.nextInt((cantCartas - 0)) + 1;
-//            Log.v("raul", "esta: " + getRandomValue)
             if (arrayCartas.size == 0) {
-//                Log.v("raul", "esta vacio")/
                 arrayCartas.add(Cartas(getRandomValue, false))
             } else {
                 var p = 0
                 for (o in arrayCartas) {
-//                    Log.v("raul", o.carta.toString() + "----" + getRandomValue)
                     if (o.carta == getRandomValue) {
-//                        Log.v("raul", "lo encuentro y lo incremento")
                         p++
                     }
                 }
@@ -197,62 +205,58 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
         if (!isWorking) {
             binding.cMeter.start()
             isWorking = true
-        } else {
-//            binding.cMeter.stop()
-//            isWorking = false
         }
-        if (cardFaceBack.visibility == View.VISIBLE) {
-            flipCard(requireContext(), cardFaceFront, cardFaceBack, cardFlip)
-        } else {
-            flipCard(requireContext(), cardFaceBack, cardFaceFront, cardFlip)
-        }
-
-        if (primerSel) {
-            Log.v("raul", "se asigno el segundo numero:" + item.carta + "---" + primerNum)
-            Log.v("raul", "posicion del segundo numero:" + position)
-
-//            handler.removeCallbacks(this)
-            val handler = Handler()
-            val runnable: Runnable = object : Runnable {
-                var i = false
-                override fun run() {
-                    Log.v("Runnable", "Handler is working: $i")
-                    i = true
-                    if (primerNum == item.carta) {
-                        var cant = cantParejas.value!! + 1
-                        cantParejas.postValue(cant)
-                        arrayCartas[position].activo = true
-                        arrayCartas[primerPos].activo = true
-                    } else {
-                        arrayCartas[position].activo = false
-                        arrayCartas[primerPos].activo = false
-                    }
-                    primerNum = -1
-                    primerPos = -1
-                    primerSel = false
-                    cargar()
-                    if (i == false) {
-                        handler.postDelayed(
-                            this,
-                            TIEMPO.toLong()
-                        )
-                    }
-                }
+        if (!item.activo) {
+            if (cardFaceBack.visibility == View.VISIBLE) {
+                flipCard(requireContext(), cardFaceFront, cardFaceBack, cardFlip)
+            } else {
+                flipCard(requireContext(), cardFaceBack, cardFaceFront, cardFlip)
             }
 
-            handler.postDelayed(
-                runnable,
-                TIEMPO.toLong()
-            )
-
-        } else {
-            primerNum = item.carta
-            primerPos = position
-            primerSel = true
-            Log.v("raul", "se asigno el primer numero:" + item)
-            Log.v("raul", "posicion del primer numero:" + position)
+            if (primerPos != position) {
+                if (primerSel) {
+                    Log.v("raul", "se asigno el segundo numero:" + item.carta + "---" + primerNum)
+                    Log.v("raul", "posicion del segundo numero:" + position)
+                    val handler = Handler()
+                    val runnable: Runnable = object : Runnable {
+                        var i = false
+                        override fun run() {
+                            Log.v("Runnable", "Handler is working: $i")
+                            i = true
+                            if (primerNum == item.carta) {
+                                var cant = cantParejas.value!! + 1
+                                cantParejas.postValue(cant)
+                                arrayCartas[position].activo = true
+                                arrayCartas[primerPos].activo = true
+                            } else {
+                                arrayCartas[position].activo = false
+                                arrayCartas[primerPos].activo = false
+                            }
+                            primerNum = -1
+                            primerPos = -1
+                            primerSel = false
+                            cargar()
+                            if (i == false) {
+                                handler.postDelayed(
+                                    this,
+                                    TIEMPO.toLong()
+                                )
+                            }
+                        }
+                    }
+                    handler.postDelayed(
+                        runnable,
+                        TIEMPO.toLong()
+                    )
+                } else {
+                    primerNum = item.carta
+                    primerPos = position
+                    primerSel = true
+                    Log.v("raul", "se asigno el primer numero:" + item)
+                    Log.v("raul", "posicion del primer numero:" + position)
+                }
+            }
         }
-
     }
 
     @SuppressLint("ResourceType")
