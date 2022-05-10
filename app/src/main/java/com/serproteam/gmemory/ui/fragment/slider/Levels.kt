@@ -49,8 +49,12 @@ class Levels : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentLevelsBinding.inflate(inflater, container, false)
-        tinyDB = TinyDB(requireContext());
+        inicio()
+        return binding.root
+    }
 
+    private fun inicio() {
+        tinyDB = TinyDB(requireContext());
         binding.btnfacil.setOnClickListener {
             activClient(binding.btnfacil,binding.txtFacil,binding.txt4x4)
             slideViewModel.saveLevel(requireContext(),1)
@@ -63,8 +67,6 @@ class Levels : Fragment() {
             activClient(binding.btnalto,binding.txtAlto,binding.txt6x5)
             slideViewModel.saveLevel(requireContext(),3)
         }
-
-        return binding.root
     }
 
     fun activClient(btn: LinearLayout, txtNivel: TextView, txtCant: TextView) {

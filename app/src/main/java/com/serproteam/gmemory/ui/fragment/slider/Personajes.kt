@@ -48,6 +48,11 @@ class Personajes : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPersonajesBinding.inflate(inflater, container, false)
+        inicio()
+        return binding.root
+    }
+
+    private fun inicio() {
         tinyDB = TinyDB(requireContext());
 
         when (personajesViewModel.personajeSel(requireContext())) {
@@ -68,7 +73,6 @@ class Personajes : Fragment() {
             sel(binding.selecSuper, binding.selecBat)
             selPersonaje("superman")
         }
-        return binding.root
     }
 
     private fun sel(selec: LinearLayout, desSelect: LinearLayout) {
