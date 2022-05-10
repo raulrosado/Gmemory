@@ -5,10 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.serproteam.gmemory.R
 import com.serproteam.gmemory.core.ReplaceFragment
+import com.serproteam.gmemory.data.model.Dao.EstadisticasDao
+import com.serproteam.gmemory.data.model.db.DB
 import com.serproteam.gmemory.databinding.FragmentBienvenidaBinding
 import com.serproteam.gmemory.databinding.FragmentHomeBinding
+import com.serproteam.gmemory.domain.Repository.EstadisticasRepository
+import com.serproteam.gmemory.ui.viewmodel.EstadisticasViewModel
+import com.serproteam.gmemory.ui.viewmodel.EstadisticasViewModelFactory
 import com.serproteam.pideloapp.core.TinyDB
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -33,6 +39,7 @@ class Home : Fragment() {
     private val binding get() = _binding!!
 //    @Inject lateinit var tinyDB: TinyDB
     @Inject lateinit var replaceFragment : ReplaceFragment
+    lateinit var estadisticasViewModel:EstadisticasViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,11 +55,28 @@ class Home : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 
+        inicio()
+        return binding.root
+    }
+
+    private fun inicio() {
+        val dao: EstadisticasDao = DB.createDB(requireActivity().application).estadisticaDao
+        val amigosRepository = EstadisticasRepository(dao)
+        val factory = EstadisticasViewModelFactory(amigosRepository)
+
+        estadisticasViewModel = ViewModelProvider(
+            this,
+            factory
+        ).get(EstadisticasViewModel::class.java)
+
+        var fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         binding.btnNewGame.setOnClickListener { replaceFragment(R.id.contenedorFragment, OpcionesJuego(), fragmentTransaction) }
 
-        return binding.root
+        binding.txtTimeFacil.text = estadisticasViewModel.mejorTiempoByLevel(1)
+        binding.txtTimeMedio.text = estadisticasViewModel.mejorTiempoByLevel(2)
+        binding.txtTimeAlto.text = estadisticasViewModel.mejorTiempoByLevel(3)
+
     }
 
     companion object {

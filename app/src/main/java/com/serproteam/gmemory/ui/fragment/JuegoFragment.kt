@@ -15,12 +15,19 @@ import androidx.core.animation.doOnEnd
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.serproteam.gmemory.Adapter.CartasAdaptadores
 import com.serproteam.gmemory.R
 import com.serproteam.gmemory.core.ReplaceFragment
+import com.serproteam.gmemory.data.model.Dao.EstadisticasDao
+import com.serproteam.gmemory.data.model.Entity.Estadistica
+import com.serproteam.gmemory.data.model.db.DB
 import com.serproteam.gmemory.databinding.FragmentJuegoBinding
 import com.serproteam.gmemory.domain.Entitys.Cartas
+import com.serproteam.gmemory.domain.Repository.EstadisticasRepository
+import com.serproteam.gmemory.ui.viewmodel.EstadisticasViewModel
+import com.serproteam.gmemory.ui.viewmodel.EstadisticasViewModelFactory
 import com.serproteam.gmemory.ui.viewmodel.PersonajesViewModel
 import com.serproteam.gmemory.ui.viewmodel.SliderViewModel
 import com.serproteam.pideloapp.core.TinyDB
@@ -54,6 +61,8 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
 
     private val personajesViewModel: PersonajesViewModel by viewModels()
     private val slideViewModel: SliderViewModel by viewModels()
+    lateinit var estadisticasViewModel:EstadisticasViewModel
+
     private var isCardFront = true
     var arrayCartas = ArrayList<Cartas>()
     var level = 0;
@@ -86,6 +95,16 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
         tinyDB = TinyDB(requireContext())
         cantParejas.postValue(0)
 
+        val dao: EstadisticasDao = DB.createDB(requireActivity().application).estadisticaDao
+        val amigosRepository = EstadisticasRepository(dao)
+        val factory = EstadisticasViewModelFactory(amigosRepository)
+
+        estadisticasViewModel = ViewModelProvider(
+            this,
+            factory
+        ).get(EstadisticasViewModel::class.java)
+
+
         cantParejas.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             binding.txtCantParejas.text = cantParejas.value.toString()
             var completo = false
@@ -102,10 +121,21 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
                     .setIcon(resources.getDrawable(R.drawable.ic_baseline_casino_24))
                     .setBackgroundDrawable(resources.getDrawable(R.color.verde_h))
                     .setTitle(resources.getString(R.string.felicidades))
-                    .setText(resources.getString(R.string.felicidadesDesc) + " Tiempo de " + binding.cMeter.getText().toString())
+                    .setText(
+                        resources.getString(R.string.felicidadesDesc) + " Tiempo de " + binding.cMeter.getText()
+                            .toString()
+                    )
                     .show()
                 binding.cMeter.stop()
                 isWorking = false
+
+                estadisticasViewModel.insert(
+                    Estadistica(
+                        0,
+                        level,
+                        binding.cMeter.getText().toString()
+                    )
+                )
             }
 
         })
@@ -217,24 +247,26 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
                 if (primerSel) {
                     Log.v("raul", "se asigno el segundo numero:" + item.carta + "---" + primerNum)
                     Log.v("raul", "posicion del segundo numero:" + position)
+
+                    if (primerNum == item.carta) {
+                        var cant = cantParejas.value!! + 1
+                        cantParejas.postValue(cant)
+                        arrayCartas[position].activo = true
+                        arrayCartas[primerPos].activo = true
+                    } else {
+                        arrayCartas[position].activo = false
+                        arrayCartas[primerPos].activo = false
+                    }
+                    primerNum = -1
+                    primerPos = -1
+                    primerSel = false
+
                     val handler = Handler()
                     val runnable: Runnable = object : Runnable {
                         var i = false
                         override fun run() {
                             Log.v("Runnable", "Handler is working: $i")
                             i = true
-                            if (primerNum == item.carta) {
-                                var cant = cantParejas.value!! + 1
-                                cantParejas.postValue(cant)
-                                arrayCartas[position].activo = true
-                                arrayCartas[primerPos].activo = true
-                            } else {
-                                arrayCartas[position].activo = false
-                                arrayCartas[primerPos].activo = false
-                            }
-                            primerNum = -1
-                            primerPos = -1
-                            primerSel = false
                             cargar()
                             if (i == false) {
                                 handler.postDelayed(
