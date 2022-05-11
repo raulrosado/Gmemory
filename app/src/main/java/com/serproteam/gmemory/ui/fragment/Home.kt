@@ -64,13 +64,16 @@ class Home : Fragment() {
         val dao: EstadisticasDao = DB.createDB(requireActivity().application).estadisticaDao
         val amigosRepository = EstadisticasRepository(dao)
         val factory = EstadisticasViewModelFactory(amigosRepository)
+        var fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+
+        binding.include2.btnLogin.setOnClickListener { replaceFragment(R.id.contenedorFragment, LoginFragment(), fragmentTransaction)  }
+        binding.include2.avatar.setOnClickListener { replaceFragment(R.id.contenedorFragment, LoginFragment(), fragmentTransaction)  }
 
         estadisticasViewModel = ViewModelProvider(
             this,
             factory
         ).get(EstadisticasViewModel::class.java)
 
-        var fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         binding.btnNewGame.setOnClickListener { replaceFragment(R.id.contenedorFragment, OpcionesJuego(), fragmentTransaction) }
 
         binding.txtTimeFacil.text = estadisticasViewModel.mejorTiempoByLevel(1)

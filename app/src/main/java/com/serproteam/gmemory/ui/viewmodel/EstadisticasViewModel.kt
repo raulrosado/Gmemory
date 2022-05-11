@@ -17,7 +17,12 @@ class EstadisticasViewModel(var estadisticasRepository: EstadisticasRepository):
         return estadisticasRepository!!.getEstadisticaByLevel(level)
     }
     fun mejorTiempoByLevel(nivel: Int):String {
-        return estadisticasRepository!!.mejorTiempoByLevel(nivel)
+        var resp =estadisticasRepository!!.mejorTiempoByLevel(nivel)
+        if(resp == null || resp.equals("")){
+            return "0:00"
+        }else {
+            return resp
+        }
     }
 
     fun insert(estadistica: Estadistica) = estadisticasRepository!!.insert(estadistica)

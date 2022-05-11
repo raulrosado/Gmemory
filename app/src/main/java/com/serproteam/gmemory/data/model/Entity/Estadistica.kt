@@ -9,5 +9,6 @@ class Estadistica(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     var nivel: Int,
-    var tiempo:String
+    var tiempo:String,
+    var cantClick:Int
 )

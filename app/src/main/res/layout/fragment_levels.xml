@@ -13,6 +13,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal"
         android:text="Escoja el nivel de dificultad"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:background="@drawable/backgroundblanco"
+        android:elevation="1dp"
         android:textSize="24sp" />
 
     <LinearLayout

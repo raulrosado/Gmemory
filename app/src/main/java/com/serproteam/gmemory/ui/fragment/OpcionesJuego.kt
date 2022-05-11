@@ -1,5 +1,6 @@
 package com.serproteam.gmemory.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -65,6 +66,11 @@ class OpcionesJuego : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentOpcionesJuegoBinding.inflate(inflater, container, false)
+        inicio()
+        return binding.root
+    }
+
+    private fun inicio() {
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         tinyDB = TinyDB(requireContext())
 
@@ -96,10 +102,6 @@ class OpcionesJuego : Fragment() {
                 replaceFragment(R.id.contenedorFragment, JuegoFragment(), fragmentTransaction)
             }
         }
-
-
-
-        return binding.root
     }
 
     fun preparetDots(currentSlidePosition: Int) {

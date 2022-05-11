@@ -1,5 +1,7 @@
 package com.serproteam.gmemory.ui.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,8 +33,10 @@ class Bienvenida : Fragment() {
 
     private var _binding: FragmentBienvenidaBinding? = null
     private val binding get() = _binding!!
-//    @Inject lateinit var tinyDB: TinyDB
-    @Inject lateinit var replaceFragment :ReplaceFragment
+
+    //    @Inject lateinit var tinyDB: TinyDB
+    @Inject
+    lateinit var replaceFragment: ReplaceFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +57,42 @@ class Bienvenida : Fragment() {
         binding.btnEmpezar.setOnClickListener {
             replaceFragment(R.id.contenedorFragment, Home(), fragmentTransaction)
         }
-        binding.btnTools.setOnClickListener {
-            replaceFragment(R.id.contenedorFragment, Tools(), fragmentTransaction)
+//        binding.btnTools.setOnClickListener {
+//            replaceFragment(R.id.contenedorFragment, Tools(), fragmentTransaction)
+//        }
+
+        binding.btnTelegram.setOnClickListener {
+            try{
+                var telegramIntent = Intent(Intent.ACTION_VIEW)
+                telegramIntent.setData(Uri.parse("https://telegram.me/Raulrosado91"))
+                startActivity(telegramIntent)
+            }catch (e:Exception){}
+        }
+
+        binding.btntWitter.setOnClickListener {
+            try{
+                var twitterIntent = Intent(Intent.ACTION_VIEW)
+                twitterIntent.setData(Uri.parse("https://twitter.com/raulrosado91"))
+                startActivity(twitterIntent)
+            }catch (e:Exception){}
+        }
+
+        binding.btnEmail.setOnClickListener {
+            try{
+                var twitterIntent = Intent(Intent.ACTION_VIEW)
+                twitterIntent.setData(Uri.parse("mailto:name@email.com"))
+                startActivity(twitterIntent)
+            }catch (e:Exception){}
+        }
+
+        binding.btnWhatsapp.setOnClickListener {
+            try {
+                var trimNumbe: String = "+5353714262"
+                var intent = Intent(Intent.ACTION_VIEW)
+                intent.setData(Uri.parse("https://wa.me/" + trimNumbe + "/?text=" + ""))
+                startActivity(intent)
+            } catch (e: Exception) {
+            }
         }
 
         return binding.root

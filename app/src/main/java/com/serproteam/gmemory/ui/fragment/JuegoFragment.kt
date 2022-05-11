@@ -77,6 +77,7 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
     var handler = Handler()
     val TIEMPO = 500
     var cantCartasLevel = 0
+    var cantClick = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +95,7 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         tinyDB = TinyDB(requireContext())
         cantParejas.postValue(0)
+        binding.cMeter.base = 0
 
         val dao: EstadisticasDao = DB.createDB(requireActivity().application).estadisticaDao
         val amigosRepository = EstadisticasRepository(dao)
@@ -103,7 +105,6 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
             this,
             factory
         ).get(EstadisticasViewModel::class.java)
-
 
         cantParejas.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             binding.txtCantParejas.text = cantParejas.value.toString()
@@ -133,7 +134,8 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
                     Estadistica(
                         0,
                         level,
-                        binding.cMeter.getText().toString()
+                        binding.cMeter.getText().toString(),
+                        cantClick
                     )
                 )
             }
@@ -232,6 +234,8 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
         position: Int
     ) {
         Log.v("raul", "carta seleccionada:" + item)
+        cantClick++
+        binding.cantClick.text = cantClick.toString()
         if (!isWorking) {
             binding.cMeter.start()
             isWorking = true
