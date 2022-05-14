@@ -3,5 +3,23 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="felicidades">Felicidades</string>
+    <string name="tiempoAgotado">Upps.</string>
+    <string name="tiempoAgotadoDesc">Tiempo agotado.</string>
     <string name="felicidadesDesc">Se completo el juego</string>
+    <string name="comenzar">Comenzar</string>
+    <string name="mejorestiempos">Mejores Tiempos</string>
+    <string name="facil">Facil</string>
+    <string name="medio">Medio</string>
+    <string name="alto">Dificil</string>
+    <string name="newgame">Nuevo juego</string>
+    <string name="game">Jugar</string>
+    <string name="niveles">Niveles</string>
+    <string name="clicks">Clicks:</string>
+    <string name="parejas">Parejas:</string>
+    <string name="Ponertiempo">Poner tiempo</string>
+    <string name="seleccionar">Seleccionar</string>
+    <string name="escojaNivel">Escoja el nivel de dificultad</string>
+    <string name="seleccioneT">Seleccione un tiempo en minutos:</string>
+    <string name="Escojapersonaje">Escoja personaje</string>
+    <string name="home">Inicio</string>
 </resources>
