@@ -3,14 +3,22 @@ package com.serproteam.gmemory.ui.fragment
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
+import android.icu.number.IntegerWidth
 import android.os.Bundle
 import android.os.Handler
+import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.SeekBar
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.animation.doOnEnd
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,6 +31,7 @@ import com.serproteam.gmemory.core.ReplaceFragment
 import com.serproteam.gmemory.data.model.Dao.EstadisticasDao
 import com.serproteam.gmemory.data.model.Entity.Estadistica
 import com.serproteam.gmemory.data.model.db.DB
+import com.serproteam.gmemory.databinding.DialogTimeBinding
 import com.serproteam.gmemory.databinding.FragmentJuegoBinding
 import com.serproteam.gmemory.domain.Entitys.Cartas
 import com.serproteam.gmemory.domain.Repository.EstadisticasRepository
@@ -61,7 +70,7 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
 
     private val personajesViewModel: PersonajesViewModel by viewModels()
     private val slideViewModel: SliderViewModel by viewModels()
-    lateinit var estadisticasViewModel:EstadisticasViewModel
+    lateinit var estadisticasViewModel: EstadisticasViewModel
 
     private var isCardFront = true
     var arrayCartas = ArrayList<Cartas>()
@@ -78,6 +87,8 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
     val TIEMPO = 500
     var cantCartasLevel = 0
     var cantClick = 0
+    var builder: Dialog? = null
+    var tiempo = 60;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,16 +106,51 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         tinyDB = TinyDB(requireContext())
         cantParejas.postValue(0)
-        binding.cMeter.base = 0
+        binding.cMeter.setBase(SystemClock.elapsedRealtime());
 
         val dao: EstadisticasDao = DB.createDB(requireActivity().application).estadisticaDao
         val amigosRepository = EstadisticasRepository(dao)
         val factory = EstadisticasViewModelFactory(amigosRepository)
 
+        builder = Dialog(requireActivity());
+        builder!!.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        builder!!.setContentView(R.layout.dialog_time);
+        builder!!.setCancelable(true);
+        builder!!.setCanceledOnTouchOutside(true);
+        builder!!.findViewById<Button>(R.id.btnSelectTime).setOnClickListener {
+            tiempo = builder!!.findViewById<SeekBar>(R.id.seekBar2).progress * 60
+            builder!!.hide()
+            binding.progressBar2.max = tiempo;
+            binding.progressBar2.visibility = View.VISIBLE;
+        }
+
         estadisticasViewModel = ViewModelProvider(
             this,
             factory
         ).get(EstadisticasViewModel::class.java)
+
+        binding.btnBack.setOnClickListener {
+            replaceFragment(R.id.contenedorFragment, OpcionesJuego(), fragmentTransaction)
+        }
+
+        binding.btnSetTime.setOnClickListener {
+            builder!!.show()
+        }
+
+        binding.cMeter.setOnChronometerTickListener {
+            binding.progressBar2.progress = tiempo--
+            Log.v("raul","cambio:"+tiempo)
+            if(tiempo == 0){
+                Alerter.create(requireActivity())
+                    .setIcon(resources.getDrawable(R.drawable.ic_baseline_casino_24))
+                    .setBackgroundDrawable(resources.getDrawable(R.color.rojo_h))
+                    .setTitle(resources.getString(R.string.tiempoAgotado))
+                    .setText(resources.getString(R.string.tiempoAgotadoDesc))
+                    .show()
+                isWorking = false
+                it.stop()
+            }
+        }
 
         cantParejas.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             binding.txtCantParejas.text = cantParejas.value.toString()
@@ -160,8 +206,18 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
             }
         }
 
-        cargar()
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    Log.d("raul", "Fragment back pressed invoked")
+                    replaceFragment(R.id.contenedorFragment, OpcionesJuego(), fragmentTransaction)
+                }
+            }
+            )
 
+
+        cargar()
         return binding.root
     }
 
@@ -236,6 +292,7 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
         Log.v("raul", "carta seleccionada:" + item)
         cantClick++
         binding.cantClick.text = cantClick.toString()
+        binding.btnSetTime.visibility = View.GONE
         if (!isWorking) {
             binding.cMeter.start()
             isWorking = true
