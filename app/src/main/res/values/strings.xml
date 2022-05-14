@@ -22,4 +22,9 @@
     <string name="seleccioneT">Seleccione un tiempo en minutos:</string>
     <string name="Escojapersonaje">Escoja personaje</string>
     <string name="home">Inicio</string>
+
+    <string name="facebook_app_id">1176207453175345</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">ad3284600fa99d6535409da1ef69f26f</string>
+
 </resources>

@@ -89,6 +89,8 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
     var cantClick = 0
     var builder: Dialog? = null
     var tiempo = 60;
+    var asigTime = false
+    var completo = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,6 +123,7 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
             tiempo = builder!!.findViewById<SeekBar>(R.id.seekBar2).progress * 60
             builder!!.hide()
             binding.progressBar2.max = tiempo;
+            asigTime = true
             binding.progressBar2.visibility = View.VISIBLE;
         }
 
@@ -138,23 +141,26 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
         }
 
         binding.cMeter.setOnChronometerTickListener {
-            binding.progressBar2.progress = tiempo--
-            Log.v("raul","cambio:"+tiempo)
-            if(tiempo == 0){
-                Alerter.create(requireActivity())
-                    .setIcon(resources.getDrawable(R.drawable.ic_baseline_casino_24))
-                    .setBackgroundDrawable(resources.getDrawable(R.color.rojo_h))
-                    .setTitle(resources.getString(R.string.tiempoAgotado))
-                    .setText(resources.getString(R.string.tiempoAgotadoDesc))
-                    .show()
-                isWorking = false
-                it.stop()
+            if (completo == false) {
+                if (asigTime == true) {
+                    binding.progressBar2.progress = tiempo--
+                    Log.v("raul", "cambio:" + tiempo)
+                    if (tiempo == 0) {
+                        Alerter.create(requireActivity())
+                            .setIcon(resources.getDrawable(R.drawable.ic_baseline_casino_24))
+                            .setBackgroundDrawable(resources.getDrawable(R.color.rojo_h))
+                            .setTitle(resources.getString(R.string.tiempoAgotado))
+                            .setText(resources.getString(R.string.tiempoAgotadoDesc))
+                            .show()
+                        isWorking = false
+                        it.stop()
+                    }
+                }
             }
         }
 
         cantParejas.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             binding.txtCantParejas.text = cantParejas.value.toString()
-            var completo = false
             var contador = 0
             for (o in arrayCartas) {
                 Log.v("raulDev", "carta:" + o.carta + " estado: " + o.activo);
@@ -163,6 +169,7 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
                 }
             }
             if (contador == cantCartasLevel) {
+                completo = true
                 Log.v("raulDev", "Se completo el juego")
                 Alerter.create(requireActivity())
                     .setIcon(resources.getDrawable(R.drawable.ic_baseline_casino_24))
@@ -215,7 +222,6 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
                 }
             }
             )
-
 
         cargar()
         return binding.root
@@ -289,64 +295,70 @@ class JuegoFragment : Fragment(), CartasAdaptadores.OnCartaClickListener {
         cardFlip: FrameLayout,
         position: Int
     ) {
-        Log.v("raul", "carta seleccionada:" + item)
-        cantClick++
-        binding.cantClick.text = cantClick.toString()
-        binding.btnSetTime.visibility = View.GONE
-        if (!isWorking) {
-            binding.cMeter.start()
-            isWorking = true
-        }
-        if (!item.activo) {
-            if (cardFaceBack.visibility == View.VISIBLE) {
-                flipCard(requireContext(), cardFaceFront, cardFaceBack, cardFlip)
-            } else {
-                flipCard(requireContext(), cardFaceBack, cardFaceFront, cardFlip)
+        Log.v("raul","********************* El juego esta:"+completo)
+        if (completo === false) {
+            Log.v("raul", "carta seleccionada:" + item)
+            cantClick++
+            binding.cantClick.text = cantClick.toString()
+            binding.btnSetTime.visibility = View.GONE
+            if (!isWorking) {
+                binding.cMeter.start()
+                isWorking = true
             }
+            if (!item.activo) {
+                if (cardFaceBack.visibility == View.VISIBLE) {
+                    flipCard(requireContext(), cardFaceFront, cardFaceBack, cardFlip)
+                } else {
+                    flipCard(requireContext(), cardFaceBack, cardFaceFront, cardFlip)
+                }
 
-            if (primerPos != position) {
-                if (primerSel) {
-                    Log.v("raul", "se asigno el segundo numero:" + item.carta + "---" + primerNum)
-                    Log.v("raul", "posicion del segundo numero:" + position)
+                if (primerPos != position) {
+                    if (primerSel) {
+                        Log.v(
+                            "raul",
+                            "se asigno el segundo numero:" + item.carta + "---" + primerNum
+                        )
+                        Log.v("raul", "posicion del segundo numero:" + position)
 
-                    if (primerNum == item.carta) {
-                        var cant = cantParejas.value!! + 1
-                        cantParejas.postValue(cant)
-                        arrayCartas[position].activo = true
-                        arrayCartas[primerPos].activo = true
-                    } else {
-                        arrayCartas[position].activo = false
-                        arrayCartas[primerPos].activo = false
-                    }
-                    primerNum = -1
-                    primerPos = -1
-                    primerSel = false
+                        if (primerNum == item.carta) {
+                            var cant = cantParejas.value!! + 1
+                            cantParejas.postValue(cant)
+                            arrayCartas[position].activo = true
+                            arrayCartas[primerPos].activo = true
+                        } else {
+                            arrayCartas[position].activo = false
+                            arrayCartas[primerPos].activo = false
+                        }
+                        primerNum = -1
+                        primerPos = -1
+                        primerSel = false
 
-                    val handler = Handler()
-                    val runnable: Runnable = object : Runnable {
-                        var i = false
-                        override fun run() {
-                            Log.v("Runnable", "Handler is working: $i")
-                            i = true
-                            cargar()
-                            if (i == false) {
-                                handler.postDelayed(
-                                    this,
-                                    TIEMPO.toLong()
-                                )
+                        val handler = Handler()
+                        val runnable: Runnable = object : Runnable {
+                            var i = false
+                            override fun run() {
+                                Log.v("Runnable", "Handler is working: $i")
+                                i = true
+                                cargar()
+                                if (i == false) {
+                                    handler.postDelayed(
+                                        this,
+                                        TIEMPO.toLong()
+                                    )
+                                }
                             }
                         }
+                        handler.postDelayed(
+                            runnable,
+                            TIEMPO.toLong()
+                        )
+                    } else {
+                        primerNum = item.carta
+                        primerPos = position
+                        primerSel = true
+                        Log.v("raul", "se asigno el primer numero:" + item)
+                        Log.v("raul", "posicion del primer numero:" + position)
                     }
-                    handler.postDelayed(
-                        runnable,
-                        TIEMPO.toLong()
-                    )
-                } else {
-                    primerNum = item.carta
-                    primerPos = position
-                    primerSel = true
-                    Log.v("raul", "se asigno el primer numero:" + item)
-                    Log.v("raul", "posicion del primer numero:" + position)
                 }
             }
         }

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.serproteam.gmemory.data.model.Entity.Jugador
 import com.serproteam.gmemory.domain.Repository.JugadorRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.*

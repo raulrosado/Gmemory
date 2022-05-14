@@ -1,23 +1,24 @@
 package com.serproteam.gmemory.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.serproteam.gmemory.R
 import com.serproteam.gmemory.core.ReplaceFragment
 import com.serproteam.gmemory.data.model.Dao.EstadisticasDao
 import com.serproteam.gmemory.data.model.db.DB
-import com.serproteam.gmemory.databinding.FragmentBienvenidaBinding
 import com.serproteam.gmemory.databinding.FragmentHomeBinding
 import com.serproteam.gmemory.domain.Repository.EstadisticasRepository
 import com.serproteam.gmemory.ui.viewmodel.EstadisticasViewModel
 import com.serproteam.gmemory.ui.viewmodel.EstadisticasViewModelFactory
-import com.serproteam.pideloapp.core.TinyDB
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,9 +39,11 @@ class Home : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-//    @Inject lateinit var tinyDB: TinyDB
-    @Inject lateinit var replaceFragment : ReplaceFragment
-    lateinit var estadisticasViewModel:EstadisticasViewModel
+
+    //    @Inject lateinit var tinyDB: TinyDB
+    @Inject
+    lateinit var replaceFragment: ReplaceFragment
+    lateinit var estadisticasViewModel: EstadisticasViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +70,13 @@ class Home : Fragment() {
         val factory = EstadisticasViewModelFactory(amigosRepository)
         var fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 
-        binding.include2.btnLogin.setOnClickListener { replaceFragment(R.id.contenedorFragment, LoginFragment(), fragmentTransaction)  }
+        binding.include2.btnLogin.setOnClickListener {
+            replaceFragment(
+                R.id.contenedorFragment,
+                LoginFragment(),
+                fragmentTransaction
+            )
+        }
 
         requireActivity()
             .onBackPressedDispatcher
@@ -83,7 +92,13 @@ class Home : Fragment() {
             factory
         ).get(EstadisticasViewModel::class.java)
 
-        binding.btnNewGame.setOnClickListener { replaceFragment(R.id.contenedorFragment, OpcionesJuego(), fragmentTransaction) }
+        binding.btnNewGame.setOnClickListener {
+            replaceFragment(
+                R.id.contenedorFragment,
+                OpcionesJuego(),
+                fragmentTransaction
+            )
+        }
 
         binding.txtTimeFacil.text = estadisticasViewModel.mejorTiempoByLevel(1)
         binding.txtTimeMedio.text = estadisticasViewModel.mejorTiempoByLevel(2)
