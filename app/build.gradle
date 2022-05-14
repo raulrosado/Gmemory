@@ -91,4 +91,7 @@ dependencies {
 
     //appwrite
     implementation("io.appwrite:sdk-for-android:0.5.0")
+    //circular progress bar
+    implementation 'com.mikhaellopez:circularprogressbar:3.1.0'
+
 }

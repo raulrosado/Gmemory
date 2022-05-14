@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondo2"
     tools:context=".ui.fragment.Home">
 
     <include
@@ -19,18 +19,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Nuevo juego"
+        android:text="@string/newgame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.972"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="68dp"
-        android:text="Mejores Tiempos"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/mejorestiempos"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +53,7 @@
             <LinearLayout
                 android:id="@+id/btnfacil"
                 android:layout_width="150dp"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/backgroundblanco"
                 android:gravity="center_horizontal|center_vertical"
@@ -80,7 +82,7 @@
             <LinearLayout
                 android:id="@+id/btnmedio"
                 android:layout_width="150dp"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/backgroundblanco"
                 android:gravity="center_horizontal|center_vertical"
@@ -108,7 +110,7 @@
             <LinearLayout
                 android:id="@+id/btnalto"
                 android:layout_width="150dp"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/backgroundblanco"
                 android:gravity="center_horizontal|center_vertical"
@@ -119,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="Alto"
+                    android:text="Dificil"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 

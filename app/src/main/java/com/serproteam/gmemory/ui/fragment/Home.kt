@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import com.serproteam.gmemory.R
 import com.serproteam.gmemory.core.ReplaceFragment
@@ -67,7 +68,15 @@ class Home : Fragment() {
         var fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 
         binding.include2.btnLogin.setOnClickListener { replaceFragment(R.id.contenedorFragment, LoginFragment(), fragmentTransaction)  }
-        binding.include2.avatar.setOnClickListener { replaceFragment(R.id.contenedorFragment, LoginFragment(), fragmentTransaction)  }
+
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().finish()
+                }
+            }
+            )
 
         estadisticasViewModel = ViewModelProvider(
             this,

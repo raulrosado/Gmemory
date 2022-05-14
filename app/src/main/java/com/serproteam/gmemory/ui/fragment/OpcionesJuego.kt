@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.viewpager.widget.PagerAdapter
@@ -81,6 +82,20 @@ class OpcionesJuego : Fragment() {
         pagerAdapter =
             SlidePagerAdapterSlider(requireActivity().getSupportFragmentManager(), fragmentList)
         binding.sliderPager.adapter = pagerAdapter
+
+        binding.btnBack.setOnClickListener {
+            replaceFragment(R.id.contenedorFragment, Home(), fragmentTransaction)
+        }
+
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    replaceFragment(R.id.contenedorFragment, Home(), fragmentTransaction)
+                }
+            }
+            )
+
 
         preparetDots(current_position++)
         binding.sliderPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {

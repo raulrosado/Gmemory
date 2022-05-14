@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Escoja personaje"
+        android:text="@string/Escojapersonaje"
         android:paddingRight="15dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"

@@ -5,19 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fondo2"
     tools:context=".ui.fragment.JuegoFragment">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+    <LinearLayout
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
-        android:background="@drawable/button_accent"
-        android:rotation="180"
-        android:src="@drawable/ic_baseline_arrow_forward_24"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button_accent"
+            android:rotation="180"
+            android:src="@drawable/ic_baseline_arrow_forward_24" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/white"
+            android:text="@string/niveles" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView4"
@@ -25,7 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="20dp"
-        android:text="Clicks:"
+        android:text="@string/clicks"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -36,6 +54,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginBottom="20dp"
         android:text="0"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4" />
@@ -60,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:textColor="@color/white"
                 android:textSize="24dp" />
 
             <LinearLayout
@@ -69,18 +89,29 @@
                 android:layoutDirection="rtl"
                 android:orientation="horizontal">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/avatar"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/profile" />
-
-                <TextView
-                    android:id="@+id/btn_login"
+                <LinearLayout
+                    android:id="@+id/btn_setTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:text="Iniciar seccion" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/button_accent"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_baseline_add_alarm_24"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/btn_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:textStyle="bold"
+                        android:text="@string/Ponertiempo" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -93,6 +124,7 @@
                         android:id="@+id/c_meter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/white"
                         app:layout_constraintBottom_toTopOf="@+id/btn"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -104,6 +136,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:text="0-"
+                        android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <TextView
@@ -111,12 +144,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Parejas:" />
+                        android:text="@string/parejas" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -137,19 +172,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center" />
 
-
         </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="65dp"
-        android:text="Niveles"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -157,8 +181,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="100"
-        android:progress="30"
+        android:progress="100"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

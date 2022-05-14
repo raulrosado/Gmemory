@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,27 +15,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
+            android:textColor="@color/white"
             android:textSize="24dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:visibility="gone"
             android:layoutDirection="rtl"
             android:orientation="horizontal">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/avatar"
+            <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/profile" />
+                android:padding="5dp"
+                android:src="@drawable/ic_baseline_add_alarm_24"
+                android:background="@drawable/button_accent"
+                app:tint="@color/white"
+                />
 
             <TextView
                 android:id="@+id/btn_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
-                android:text="Iniciar seccion" />
+                android:textColor="@color/white"
+                android:text="@string/Ponertiempo" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

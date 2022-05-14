@@ -13,6 +13,7 @@
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/card_grispanel.xml" value="0.3635" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/checked_btn.xml" value="0.3635" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/checked_btn_blue.xml" value="0.2615" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/corner_white.xml" value="0.3635" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/dost.xml" value="0.2735" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/gradienttransparente.xml" value="0.1255" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/drawable/inactive_dost.xml" value="0.2735" />
@@ -22,13 +23,15 @@
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/card_back.xml" value="0.3625" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/card_front.xml" value="0.3625" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/carta.xml" value="0.3625" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/dialog_time.xml" value="0.3625" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_bienvenida.xml" value="0.38697916666666665" />
-        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_home.xml" value="0.38697916666666665" />
-        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_juego.xml" value="0.43770724774988157" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_juego.xml" value="0.35260416666666666" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_levels.xml" value="0.3625" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_login.xml" value="0.3625" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_opciones_juego.xml" value="0.29129886506935687" />
         <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_personajes.xml" value="0.5" />
+        <entry key="..\:/ANDROID/PROJECTS/Gmemory/app/src/main/res/layout/fragment_tools.xml" value="0.3625" />
       </map>
     </option>
   </component>

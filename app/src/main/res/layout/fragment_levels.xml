@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Escoja el nivel de dificultad"
+        android:text="@string/escojaNivel"
         android:paddingRight="15dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="Facil"
+                    android:text="@string/facil"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -76,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="Medio"
+                    android:text="@string/medio"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="Alto"
+                    android:text="@string/alto"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
